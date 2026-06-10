@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kritik & Saran GMK</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Logo GMK" class="logo">
+    <h1>Kritik & Saran GMK</h1>
+  </header>
+
+  <main>
+    <form action="/api/submit" method="POST" class="form-box">
+      <label>1. Apakah kinerja kepengurusan GMK sudah memuaskan?</label>
+      <div class="options">
+        <input type="radio" name="q1" value="YA"> YA
+        <input type="radio" name="q1" value="BELUM"> BELUM
+      </div>
+
+      <label>2. Apakah kamu sudah puas dengan kinerja Ketua dan Wakil Ketua GMK?</label>
+      <div class="options">
+        <input type="radio" name="q2" value="YA"> YA
+        <input type="radio" name="q2" value="BELUM"> BELUM
+      </div>
+
+      <label>3. Apakah kamu setuju jika dilakukan evaluasi, pergantian, atau penambahan pengurus GMK?</label>
+      <div class="options">
+        <input type="radio" name="q3" value="YA"> YA
+        <input type="radio" name="q3" value="TIDAK"> TIDAK
+      </div>
+      <textarea name="q3_detail" placeholder="Jika YA, pengurus mana yang perlu dibenahi..."></textarea>
+
+      <label>4. Apakah anda merasa malas datang ke pertemuan rutin GMK?</label>
+      <div class="options">
+        <input type="radio" name="q4" value="YA"> YA
+        <input type="radio" name="q4" value="TIDAK"> TIDAK
+      </div>
+      <textarea name="q4_detail" placeholder="Jika YA, sebutkan alasannya..."></textarea>
+
+      <label>5. Alasan kamu memilih diam saat pertemuan GMK?</label>
+      <textarea name="q5"></textarea>
+
+      <label>Kritik & Saran untuk GMK:</label>
+      <textarea name="kritik_saran"></textarea>
+
+      <button type="submit">Kirim</button>
+    </form>
+  </main>
+</body>
+</html>
