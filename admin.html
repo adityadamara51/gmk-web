@@ -34,3 +34,33 @@
   </script>
 </body>
 </html>
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient('SUPABASE_URL', 'SUPABASE_KEY');
+
+async function loadData() {
+  const { data, error } = await supabase
+    .from('kritik_saran_gmk')
+    .select('*')
+    .order('timestamp', { ascending: false });
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  const tbody = document.querySelector("#feedbackTable tbody");
+  tbody.innerHTML = "";
+
+  data.forEach(item => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${item.timestamp}</td>
+      <td>${item.q1}</td>
+      <td>${item.kritik_saran}</td>
+    `;
+    tbody.appendChild(row);
+  });
+}
+
+loadData();
