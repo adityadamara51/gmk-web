@@ -1,36 +1,25 @@
-// Tangkap event submit form
-document.getElementById("feedbackForm").addEventListener("submit", async function(event) {
-  event.preventDefault(); // cegah reload halaman
+import { createClient } from '@supabase/supabase-js';
 
-  // Ambil data dari form
+// Inisialisasi Supabase client
+const supabase = createClient(
+  'https://ounztkqtulkvomktcfaq.supabase.co',   // isi dengan URL proyekmu
+  'sb_publishable_PFqrp8TcWATIUYtomZYTAQ_IU5Zd9Db'    // isi dengan anon public key
+);
+
+document.getElementById("feedbackForm").addEventListener("submit", async function(event) {
+  event.preventDefault();
+
   const q1 = document.querySelector('input[name="q1"]:checked')?.value || "";
   const kritikSaran = document.querySelector('textarea[name="kritikSaran"]').value;
 
-  // Buat objek data
-  const feedback = {
-    q1: q1,
-    kritikSaran: kritikSaran,
-    timestamp: new Date().toISOString()
-  };
-
-  // --- Tahap awal: simpan ke localStorage ---
-  let allFeedback = JSON.parse(localStorage.getItem("feedbackData")) || [];
-  allFeedback.push(feedback);
-  localStorage.setItem("feedbackData", JSON.stringify(allFeedback));
-
-  // --- Nanti bisa diganti dengan Supabase / Firebase ---
-  // Contoh Supabase:
-  /*
   const { error } = await supabase
     .from('kritik_saran_gmk')
-    .insert([feedback]);
+    .insert([{ q1, kritik_saran: kritikSaran, timestamp: new Date().toISOString() }]);
+
   if (error) {
     alert("Gagal menyimpan data: " + error.message);
   } else {
-    alert("Data berhasil disimpan!");
+    alert("Terima kasih, kritik & saranmu sudah terkirim!");
+    document.getElementById("feedbackForm").reset();
   }
-  */
-
-  alert("Terima kasih, kritik & saranmu sudah terkirim secara anonim!");
-  document.getElementById("feedbackForm").reset();
 });
