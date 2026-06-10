@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Admin GMK</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Dashboard Kritik & Saran GMK</h1>
+  <table border="1" id="feedbackTable">
+    <thead>
+      <tr>
+        <th>Waktu</th>
+        <th>Jawaban</th>
+        <th>Kritik & Saran</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const feedbackData = JSON.parse(localStorage.getItem("feedbackData")) || [];
+    const tbody = document.querySelector("#feedbackTable tbody");
+
+    feedbackData.forEach(item => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${item.timestamp}</td>
+        <td>${item.q1}</td>
+        <td>${item.kritikSaran}</td>
+      `;
+      tbody.appendChild(row);
+    });
+  </script>
+</body>
+</html>
